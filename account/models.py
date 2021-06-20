@@ -30,7 +30,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    activation_code = models.CharField(max_length=8, blank=True)
+    activation_code = models.CharField(max_length=16, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -45,7 +45,7 @@ class User(AbstractBaseUser):
 
     def create_activation_code(self):
         from django.utils.crypto import get_random_string
-        code = get_random_string(8)
+        code = get_random_string(16)
         if User.objects.filter(activation_code=code).exists():
             self.create_activation_code()
         self.activation_code = code
