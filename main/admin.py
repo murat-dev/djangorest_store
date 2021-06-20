@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, ProductImage, Tag
+from .models import Category, Product, ProductImage, Tag, Like, Comment
 
 
 class ImageInline(admin.TabularInline):
@@ -30,3 +30,5 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Like)
+admin.site.register(Comment)

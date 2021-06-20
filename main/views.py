@@ -1,7 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.decorators import api_view, action
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -39,14 +39,14 @@ class ProductViewSet(ModelViewSet):
         return self.serializer_class
 
     @action(['GET'], detail=True)
-    def comments(self, request, slug=None):
+    def comments(self, request, id=None):
         product = self.get_object()
         comments = product.comments.all()
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
     @action(['POST'], detail=True)
-    def like(self, request, slug=None):
+    def like(self, request, id=None):
         product = self.get_object()
         print(product)
         user = request.user
