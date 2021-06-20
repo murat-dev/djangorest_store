@@ -30,7 +30,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('text', 'product', 'rating', "user")
 
     def validate_rating(self, rating):
         if rating not in range(1, 6):
