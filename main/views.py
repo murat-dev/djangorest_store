@@ -48,6 +48,7 @@ class ProductViewSet(ModelViewSet):
     @action(['POST'], detail=True)
     def like(self, request, slug=None):
         product = self.get_object()
+        print(product)
         user = request.user
         try:
             like = Like.objects.get(product=product, user=user)
