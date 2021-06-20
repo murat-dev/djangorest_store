@@ -7,10 +7,13 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 
 from main.views import CategoriesListView, TagsListView, CommentCreateView, ProductViewSet
+from cart.views import CartViewSet
 
 
 router = DefaultRouter()
 router.register('products', ProductViewSet)
+router.register('cart', CartViewSet)
+
 schema_view = get_schema_view(
     openapi.Info(
         title='Online Store',
@@ -24,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api/', include("account.urls")),
+    path('api/profile/', include("myprofile.urls")),
     path('api/docs/', schema_view.with_ui()),
     path('api/categories/', CategoriesListView.as_view(), name="categories-list"),
     path('api/tags/', TagsListView.as_view(), name="tags-list"),

@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
+    'phonenumber_field',
 
     'account',
     'main',
+    'cart',
+    'myprofile',
 
 ]
 
